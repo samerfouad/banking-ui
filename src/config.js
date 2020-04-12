@@ -1,2 +1,2 @@
-export const LOGIN_URL = 'http://localhost:3001';
-export const LOAN_SERVICE_URL = 'http://localhost:3002';
+export const LOGIN_URL = 'http://184.172.233.23:31833';
+export const LOAN_SERVICE_URL = 'http://184.172.233.23:31833';

@@ -10,7 +10,7 @@ spec:
   template:
     metadata:
       labels:
-        app: basnking-ui
+        app: banking-ui
     spec:
       containers:
       - name: banking-ui

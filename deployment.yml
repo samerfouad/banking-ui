@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-app
+  name: ui
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: hello-app
+      app: ui
   template:
     metadata:
       labels:
-        app: hello-app
+        app: ui
     spec:
       containers:
-      - name: hello-app
+      - name: ui
         image: webapp:1
         # for local development against minikube registry
         #imagePullPolicy: Never        
@@ -23,9 +23,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-service
+  name: ui-service
   labels:
-    app: hello-service
+    app: ui-service
 spec:
   type: NodePort
   ports:
@@ -34,4 +34,4 @@ spec:
       targetPort: 80
   # label keys and values that must match in order to receive traffic for this service
   selector:
-    app: hello-app
+    app: ui

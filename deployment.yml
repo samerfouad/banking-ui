@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: banking-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: banking-ui
+  template:
+    metadata:
+      labels:
+        app: basnking-ui
+    spec:
+      containers:
+      - name: banking-ui
+        image: banking-ui:1
+        # for local development against minikube registry
+        #imagePullPolicy: Never        
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bankingui-service
+  labels:
+    app: bankingui-service
+spec:
+  type: NodePort
+  ports:
+    # the port that this service should serve on
+    - port: 80
+      targetPort: 8080
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    app: banking-ui

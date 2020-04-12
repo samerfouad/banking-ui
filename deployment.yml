@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: banking-ui
+  name: hello-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: banking-ui
+      app: hello-app
   template:
     metadata:
       labels:
-        app: banking-ui
+        app: hello-app
     spec:
       containers:
-      - name: banking-ui
-        image: banking-ui:1
+      - name: hello-app
+        image: webapp:1
         # for local development against minikube registry
         #imagePullPolicy: Never        
         ports:
@@ -23,9 +23,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: banking-ui
+  name: hello-service
   labels:
-    app: banking-ui
+    app: hello-service
 spec:
   type: NodePort
   ports:
@@ -34,4 +34,4 @@ spec:
       targetPort: 8080
   # label keys and values that must match in order to receive traffic for this service
   selector:
-    app: banking-ui
+    app: hello-app
